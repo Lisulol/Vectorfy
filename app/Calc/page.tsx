@@ -5,39 +5,54 @@ import { useState, ChangeEvent } from "react"
 
 export default function CalcPage() {
   const [showenter, setShowenter] = useState(true)
-  const [vector1, setVector1] = useState<number[]>([0, 0, 0])
-  const [vector2, setVector2] = useState<number[]>([0, 0, 0])
+  // store input values as strings so users can type '-' or partial numbers
+  const [vector1, setVector1] = useState<string[]>(["0", "0", "0"])
+  const [vector2, setVector2] = useState<string[]>(["0", "0", "0"])
 
   const handleV1Change = (idx: number, e: ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value
-    const n = raw === "" ? 0 : Number(raw)
     setVector1((prev) => {
       const copy = [...prev]
-      copy[idx] = Number.isNaN(n) ? 0 : n
+      copy[idx] = raw
       return copy
     })
   }
 
   const handleV2Change = (idx: number, e: ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value
-    const n = raw === "" ? 0 : Number(raw)
     setVector2((prev) => {
       const copy = [...prev]
-      copy[idx] = Number.isNaN(n) ? 0 : n
+      copy[idx] = raw
       return copy
     })
   }
 
-  const addVectors = () => vector1.map((v, i) => v + (vector2[i] ?? 0))
-  const dotProduct = () =>
-    vector1.reduce((acc, v, i) => acc + v * (vector2[i] ?? 0), 0)
+  const parseNums = (arr: string[]) =>
+    arr.map((s) => {
+      const n = Number(s)
+      return Number.isNaN(n) ? 0 : n
+    })
+
+  const addVectors = () => {
+    const a = parseNums(vector1)
+    const b = parseNums(vector2)
+    return a.map((v, i) => v + (b[i] ?? 0))
+  }
+  const dotProduct = () => {
+    const a = parseNums(vector1)
+    const b = parseNums(vector2)
+    return a.reduce((acc, v, i) => acc + v * (b[i] ?? 0), 0)
+  }
+
   const crossProduct = () => {
-    const x1 = vector1[0] ?? 0
-    const y1 = vector1[1] ?? 0
-    const z1 = vector1[2] ?? 0
-    const x2 = vector2[0] ?? 0
-    const y2 = vector2[1] ?? 0
-    const z2 = vector2[2] ?? 0
+    const a = parseNums(vector1)
+    const b = parseNums(vector2)
+    const x1 = a[0] ?? 0
+    const y1 = a[1] ?? 0
+    const z1 = a[2] ?? 0
+    const x2 = b[0] ?? 0
+    const y2 = b[1] ?? 0
+    const z2 = b[2] ?? 0
     return [y1 * z2 - z1 * y2, z1 * x2 - x1 * z2, x1 * y2 - y1 * x2]
   }
 
