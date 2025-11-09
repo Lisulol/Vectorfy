@@ -104,10 +104,10 @@ export default function Multiply() {
             <p className="text-black font-mono font-bold">
               2D Addition(POA) <br />
               So this method involves placing the two vectors such that they
-              both start from the same origin point. Then, we complete the
-              parallelogram and draw the resultant vector from the origin to the
-              opposite corner of the parallelogram. Like this, where r is the
-              resultant vector:
+              both start from the same origin point, hence the name. Then, we
+              complete the parallelogram and draw the resultant vector from the
+              origin to the opposite corner of the parallelogram. Like this,
+              where r is the resultant vector:
             </p>
             <img src="/v3.png" />
             <p className="text-black font-mono font-bold">
@@ -221,11 +221,11 @@ export default function Multiply() {
               Vector b = [4i,1j] <br />
               a · b = (2 * 4) + (3 * 1) = 8 + 3 = 11 <br />
               a · b = |a| |b| cosθ <br />
-              <p className="text-xs">
-                Where θ is the angle between a and b. <br /> From this formula,
-                we can also derive that if the product of the dot is equal to 0,
-                then the vectors are perpendicular
-              </p>
+            </p>
+            <p className=" font-mono font-black text-xs">
+              Where θ is the angle between a and b. <br /> From this formula, we
+              can also derive that if the product of the dot is equal to 0, then
+              the vectors are perpendicular
             </p>
           </div>
           <div className="flex  h-2/12 w-full items-center justify-center">

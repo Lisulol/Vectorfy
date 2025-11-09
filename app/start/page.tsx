@@ -4,6 +4,7 @@ import { AuroraBackground } from "@/components/ui/shadcn-io/aurora-background"
 import Multiply from "@/lib/components/Multiply"
 import What from "@/lib/components/what"
 import { IconArrowUpRightCircle } from "@tabler/icons-react"
+import Link from "next/link"
 import { useState } from "react"
 
 export default function StartPage() {
@@ -60,8 +61,10 @@ export default function StartPage() {
             <p>*</p>
           </div>
           <div className="flex gap-x-3 p-3 hover:bg-[#afafaf] flex-row font-bold font-mono items-center justify-center h-1/5 w-1/5 border border-black rounded-4xl">
-            <p>2D Draw</p>
-            <IconArrowUpRightCircle />
+            <Link href={"/Draw"} className="flex flex-row">
+              <p>2D Draw</p>
+              <IconArrowUpRightCircle />
+            </Link>
           </div>
           <div
             className="flex gap-x-3 p-3 hover:bg-[#afafaf] flex-row font-bold font-mono items-center justify-center h-1/5 w-1/5 border border-black rounded-4xl"
