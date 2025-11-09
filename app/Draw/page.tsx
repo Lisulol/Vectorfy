@@ -1,6 +1,8 @@
 "use client"
 import { AuroraBackground } from "@/components/ui/shadcn-io/aurora-background"
+import Alert from "@/lib/components/alert"
 import Konva from "konva"
+import Link from "next/link"
 import { use, useEffect, useRef, useState } from "react"
 import { Stage, Layer, Arrow, Line, Text } from "react-konva"
 
@@ -26,6 +28,10 @@ export default function DrawPage() {
   const [stagesize, setStagesize] = useState({ width: 800, height: 600 })
   const [showsmthing, setShowsomething] = useState(false)
   const [result, setResult] = useState<Vector | null>(null)
+  const [showMessage, setShowMessage] = useState(false)
+  const [type, setType] = useState("")
+  const [message, setMessage] = useState("")
+  const promptHandlerRef = useRef<((n: number) => void) | null>(null)
 
   const gridSpacing = 50
   const gridStroke = "#e5e7eb"
@@ -245,37 +251,65 @@ export default function DrawPage() {
       setSelected([])
     }
   }
+  function handlemessageshow() {
+    setShowMessage(true)
+    setTimeout(() => {
+      setShowMessage(false)
+    }, 2000)
+  }
   function constmutliply() {
     if (selected.length == 1) {
       const vector = selected[0]
-      const nStr = prompt("Enter scalar to multiply by:")
-      if (nStr === null) return
-      const n = Number(nStr)
-      if (Number.isNaN(n)) {
-        alert("Invalid number")
-        return
-      }
-      const newVector: Vector = {
-        id: "result",
-        x: vector.x,
-        y: vector.y,
-        dx: vector.dx * n,
-        dy: vector.dy * n,
-        stroke: "#ff0000",
-        strokeWidth: 2,
-      }
 
-      setShapes((s) => [...s.filter((sh) => sh.id !== "result"), newVector])
-      setResult(newVector)
-      setSelected([])
+      promptHandlerRef.current = (n: number) => {
+        if (Number.isNaN(n)) {
+          handlemessageshow()
+          setType("message")
+          setMessage("Invalid number")
+          return
+        }
+        const newVector: Vector = {
+          id: "result",
+          x: vector.x,
+          y: vector.y,
+          dx: vector.dx * n,
+          dy: vector.dy * n,
+          stroke: "#ff0000",
+          strokeWidth: 2,
+        }
+        setShapes((s) => [...s.filter((sh) => sh.id !== "result"), newVector])
+        setResult(newVector)
+        setSelected([])
+      }
+      setType("prompt")
+      setMessage("Enter scalar to multiply by:")
+      setShowMessage(true)
     }
+  }
+  function handlePromptSubmit(n: number) {
+    if (promptHandlerRef.current) {
+      promptHandlerRef.current(n)
+      promptHandlerRef.current = null
+    }
+    setShowMessage(false)
+    setType("")
+    setMessage("")
+  }
+
+  function handlePromptCancel() {
+    promptHandlerRef.current = null
+    setShowMessage(false)
+    setType("")
+    setMessage("")
   }
   function handledotproduct() {
     if (selected.length == 2) {
       const v1 = selected[0]
       const v2 = selected[1]
       const result = v1.dx * v2.dx + v1.dy * v2.dy
-      alert(result)
+      handlemessageshow()
+      setType("message")
+      setMessage(`Dot product: ${result}`)
       setSelected([])
     }
   }
@@ -286,6 +320,27 @@ export default function DrawPage() {
         ref={containerRef}
         className="relative z-10 gap-5 h-screen w-screen items-center justify-center flex flex-row"
       >
+        <div className="absolute top-4 left-4 z-30">
+          <Link
+            className="bg-white border text-4xl items-center justify-center flex p-2 rounded"
+            href="/start"
+          >
+            {"<"}
+          </Link>
+        </div>
+        {showMessage && (
+          <div
+            className="fixed inset-0 flex items-center justify-center"
+            style={{ background: "rgba(0,0,0,0.4)", zIndex: 9999 }}
+          >
+            <Alert
+              type={type}
+              message={message}
+              onSubmit={handlePromptSubmit}
+              onCancel={handlePromptCancel}
+            />
+          </div>
+        )}
         {showsmthing && (
           <div className="text-black flex flex-col gap-10  items-center justify-center font-mono h-4/5 w-20 bg-white border border-black rounded-4xl p-4">
             <div

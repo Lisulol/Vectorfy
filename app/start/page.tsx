@@ -60,12 +60,15 @@ export default function StartPage() {
             <IconArrowUpRightCircle />
             <p>*</p>
           </div>
-          <div className="flex gap-x-3 p-3 hover:bg-[#afafaf] flex-row font-bold font-mono items-center justify-center h-1/5 w-1/5 border border-black rounded-4xl">
-            <Link href={"/Draw"} className="flex flex-row">
+          <Link
+            className="flex gap-x-3 p-3 hover:bg-[#afafaf] flex-row font-bold font-mono items-center justify-center h-1/5 w-1/5 border border-black rounded-4xl"
+            href={"/Draw"}
+          >
+            <div className="flex flex-row">
               <p>2D Draw</p>
               <IconArrowUpRightCircle />
-            </Link>
-          </div>
+            </div>
+          </Link>
           <div
             className="flex gap-x-3 p-3 hover:bg-[#afafaf] flex-row font-bold font-mono items-center justify-center h-1/5 w-1/5 border border-black rounded-4xl"
             onClick={handlemult}
@@ -74,10 +77,15 @@ export default function StartPage() {
             <IconArrowUpRightCircle />
             <p>*</p>
           </div>
-          <div className="flex gap-x-3 p-3 hover:bg-[#afafaf] flex-row font-bold font-mono items-center justify-center h-1/5 w-1/5 border border-black rounded-4xl">
-            <p>4th box does nothing looks good tho</p>
-            <IconArrowUpRightCircle />
-          </div>
+          <Link
+            className="flex gap-x-3 p-3 hover:bg-[#afafaf] flex-row font-bold font-mono items-center justify-center h-1/5 w-1/5 border border-black rounded-4xl"
+            href={"/Calc"}
+          >
+            <div className="flex flex-row">
+              <p>3D Calculator</p>
+              <IconArrowUpRightCircle />
+            </div>
+          </Link>
         </div>
         <div className="flex h-2/12 w-screen">
           <p className="w-100">
