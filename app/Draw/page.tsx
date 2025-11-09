@@ -3,7 +3,7 @@ import { AuroraBackground } from "@/components/ui/shadcn-io/aurora-background"
 import Alert from "@/lib/components/alert"
 import Konva from "konva"
 import Link from "next/link"
-import { use, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Stage, Layer, Arrow, Line, Text } from "react-konva"
 
 type Vector = {
@@ -322,7 +322,7 @@ export default function DrawPage() {
       >
         <div className="absolute top-4 left-4 z-30">
           <Link
-            className="bg-white border text-4xl items-center justify-center flex p-2 rounded"
+            className="bg-white border text-4xl items-center justify-center flex p-2 rounded hover:bg-[#afafaf]"
             href="/start"
           >
             {"<"}

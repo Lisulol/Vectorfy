@@ -53,7 +53,7 @@ export default function StartPage() {
         </div>
         <div className="flex gap-10 items-center justify-center h-10/12 w-full">
           <div
-            className="flex gap-x-3 p-3 hover:bg-[#afafaf] flex-row font-bold font-mono items-center justify-center h-1/5 w-1/5 border border-black rounded-4xl"
+            className="bg-white flex gap-x-3 p-3 hover:bg-[#afafaf] flex-row font-bold font-mono items-center justify-center h-1/5 w-1/5 border border-black rounded-4xl"
             onClick={handlewhat}
           >
             <p>What are vectors?</p>
@@ -61,7 +61,7 @@ export default function StartPage() {
             <p>*</p>
           </div>
           <Link
-            className="flex gap-x-3 p-3 hover:bg-[#afafaf] flex-row font-bold font-mono items-center justify-center h-1/5 w-1/5 border border-black rounded-4xl"
+            className=" bg-white  flex gap-x-3 p-3 hover:bg-[#afafaf] flex-row font-bold font-mono items-center justify-center h-1/5 w-1/5 border border-black rounded-4xl"
             href={"/Draw"}
           >
             <div className="flex flex-row">
@@ -70,7 +70,7 @@ export default function StartPage() {
             </div>
           </Link>
           <div
-            className="flex gap-x-3 p-3 hover:bg-[#afafaf] flex-row font-bold font-mono items-center justify-center h-1/5 w-1/5 border border-black rounded-4xl"
+            className="bg-white flex gap-x-3 p-3 hover:bg-[#afafaf] flex-row font-bold font-mono items-center justify-center h-1/5 w-1/5 border border-black rounded-4xl"
             onClick={handlemult}
           >
             <p>Learn Addition, Multiplication</p>
@@ -78,7 +78,7 @@ export default function StartPage() {
             <p>*</p>
           </div>
           <Link
-            className="flex gap-x-3 p-3 hover:bg-[#afafaf] flex-row font-bold font-mono items-center justify-center h-1/5 w-1/5 border border-black rounded-4xl"
+            className="bg-white flex gap-x-3 p-3 hover:bg-[#afafaf] flex-row font-bold font-mono items-center justify-center h-1/5 w-1/5 border border-black rounded-4xl"
             href={"/Calc"}
           >
             <div className="flex flex-row">
@@ -88,11 +88,11 @@ export default function StartPage() {
           </Link>
         </div>
         <div className="flex h-2/12 w-screen">
-          <p className="w-100">
+          <p className="w-100 border border-black text-xs p-5 rounded-r-4xl">
             * Be aware that everything here is done with my own knowledge of
             vectors which is not that extensive. Some of the methods here might
-            be new to you I just use what my prof taught me. 3D draw coming soon
-            "a.k.a never" couse 2D is not that intresting
+            be new to you I just use what my teacher taught me. 3D draw coming
+            soon "a.k.a never"
           </p>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { useState, ChangeEvent } from "react"
 
 export default function CalcPage() {
   const [showenter, setShowenter] = useState(true)
-  // store input values as strings so users can type '-' or partial numbers
+
   const [vector1, setVector1] = useState<string[]>(["0", "0", "0"])
   const [vector2, setVector2] = useState<string[]>(["0", "0", "0"])
 
@@ -120,16 +120,19 @@ export default function CalcPage() {
               {"]"}
             </div>
           </div>
-          <div className="mt-4 w-1/4 gap-15 flex flex-col">
-            <p className="border rounded-3xl p-10 border-black">
-              Sum: [{addVectors().join(", ")}]
-            </p>
-            <p className="border rounded-3xl p-10 border-black">
-              Dot product: {dotProduct()}
-            </p>
-            <p className="border rounded-3xl p-10 border-black">
-              Cross product: [{crossProduct().join(", ")}]
-            </p>
+          <div className="mt-4  gap-15 flex flex-row">
+            <div className="flex gap-10 flex-col">
+              <p className="border rounded-3xl p-10 border-black">
+                Sum: [{addVectors().join(", ")}]
+              </p>
+              <p className="border rounded-3xl p-10 border-black">
+                Dot product: {dotProduct()}
+              </p>
+              <p className="border rounded-3xl p-10 border-black">
+                Cross product: [{crossProduct().join(", ")}]
+              </p>
+            </div>
+            <img src="/v5.png" alt="nothin" />
           </div>
         </div>
       </div>
